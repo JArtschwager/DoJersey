@@ -1,0 +1,21 @@
+
+
+.firstRow {
+    text-align: center;
+    /* text-decoration: underline rgb(227, 233, 255); */
+
+}
+
+.searchTitle {
+    text-align: center;
+    color: white;
+    padding-top: 20px;
+}
+
+
+
+
+/* 
+.li { background: green; }
+.li:nth-child(odd) { background: red; } */
+
