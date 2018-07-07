@@ -11,6 +11,7 @@ const todonjSchema = new Schema({
     location: String,
     imageURL: String,
     phoneNumber: String,
+    interestType: String,
     
 });
 

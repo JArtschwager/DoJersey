@@ -4,7 +4,7 @@ import moment from "moment";
 import {Route} from 'react-router-dom';
 import './style/homestyle.css';
 import './style/resultsStyle.css';
-
+import boardwalk from "./style/boardwalk.jpg";
 
 // state may need to change.
 class Results extends Component {
@@ -21,6 +21,7 @@ class Results extends Component {
   //   API.todoNJSearch()
   //     .then(res => this.setState({todonjs: res.data}))
   //     .catch(err => console.log(err))
+
   // }
   
   getSavedActivities = () => {
@@ -34,82 +35,45 @@ class Results extends Component {
     return (
       <div>
         <div className="container">
-        <div className="jumbotron jumbotron-fluid py-5 jumboStyle">
-        <div ClassName="resultsHeader">text test here.  Needs to be input based on which is selected from DB and buttons.</div>
+        <div className="jumbotron jumbotron-fluid py-5 jumboStyle resultsJumbo">
+    {/*  <img className="imgResponsive imageSize" src={boardwalk} className="rounded center"/> */}
         </div>
-          <div className="row firstRow mx-auto row align-items-center justify-content-center my-5">
-          <h1>Your Results below</h1>
+          <div className="firstRow mx-auto row align-items-center justify-content-center my-5">
+          <h1>Your Results below (add selectors - south Jersey Indoor. etc.)</h1>
+          <h2>{this.state.todonjs.length
+            ? ""
+            : "No Saved activities to Display"}
+          </h2>
           </div>  
                 <table className="table table-hover">
                   <thead>
                       <tr>
-                          <th scope="col">Name</th>
-                          <th scope="col">location</th>
-                          <th scope="col">Phone Number</th>
-                          <th scope="col">Image</th>
-                          <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Activity</th>
+                        <th scope="col">location</th>
                       </tr>
                   </thead>
-                    
-                        <h2>{this.state.todonjs.length
-                          ? ""
-                          : "No Saved activities to Display"}
-                        </h2>
-                      <tbody>
-
-
-                        <div className="test">
-                          {this
-                            .state
-                            .todonjs
-                            .map(todonj => (
-                              
-                              <tr key={todonj._id} className="row">
-
-                                <th scope="row">
-                        
-                                <a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a>
-                                <th key={todonj._id} scope="row">1</th>
-                                <td><a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a>
-                                </td>
-                                <td className="location">{todonj.location}</td>
-                                <td className="phoneNumber">{todonj.phoneNumber}</td>
-                                <td className="imageURL">{todonj.imageURL}</td>
-                                </th>
-                          
-                              
-                              </tr>
-                            ))}
-                            
-                        </div>
-                        </tbody>
-                      </table>
-
-                      {/* todonj result container */}
-                    {/*  <div className="col-12">
-                        <h2>{this.state.todonjs.length
-                          ? ""
-                          : "No Saved activities to Display"}
-                        </h2>
-
-                        <ul className="list-group list-group-flush">
-                          {this
-                            .state
-                            .todonjs
-                            .map(todonj => (
-                              <li key={todonj._id} className="list-group-item d-flex justify-content-between align-items-center">
-                                <a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a>
-                                <div className="location">{todonj.location}</div>
-                                <div className="phoneNumber">{todonj.phoneNumber}</div>
-                                <div className="imageURL">{todonj.imageURL}</div>
-
-                              
-                              </li>
-                            ))}
-                        </ul>
-                          </div> */}
+                  <tbody>
+                      {this
+                        .state
+                        .todonjs
+                        .map(todonj => (
+                          <tr key={todonj._id}>
+                            <td><img className="resultImage" src={todonj.imageURL} /></td>
+                            <td><div><a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a></div>
+                            <div className="phoneNumber">{todonj.phoneNumber
+                              ? "Phone: "+todonj.phoneNumber
+                              : ""}</div>
+                            <div className="description">{todonj.description
+                                ? todonj.description
+                                : ""}</div></td>
+                            <td className="location">{todonj.location}</td>
+                          </tr>
+                        ))}
+                  </tbody>
+                </table>
+                  </div>        
               </div>
-          </div>
     )
   }
 }

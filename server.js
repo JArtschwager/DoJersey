@@ -63,13 +63,14 @@ app.get("/scrape/outdoor", function (req, res) {
     // location: String,
     // imageURL: String,
     // phoneNumber: String, //*[@id="centercolumnmobile"]/div/div/table[1]/tbody/tr/td/comment()[5]
+    ////*[@id="centercolumnmobile"]/div/div/table[1]/tbody/tr/td/a[2]/img
 
 
     $(".main_box > table").each(function (i, element) {
       var title = $(element).find('tbody > tr > td > a').text().trim();
       var url = $(element).find('tbody > tr > td > a').attr("href");
       var phoneNumber = $(element).find('tbody > tr > td > strong:nth-child(6)').text().trim();
-      var imageURL = $(element).find('tbody > tr > td > img').attr("src");
+      var imageURL = $(element).find('tbody > tr > td > a:nth-child(2) > img').attr("src");
       var location = $(element).find('tbody > tr > td > div > strong').text().trim();
       var description = $(element).find('tbody > tr > td').text().trim();
 

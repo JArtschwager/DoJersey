@@ -37,7 +37,8 @@ class Home extends Component {
                       <img src={mapofnj} className="rounded float-left newJerseyMap" />
                       </div>
                   <div className="col-6">
-                    <h2> welcome to, To Do New Jersey!</h2>
+                    <h2> Find what there is to do in New Jersey</h2>
+                      <h4>Follow the prompts for your recommended activities list</h4>
                             {/*<form> */}
                                 <div className="form-group">       
                                 <Route render={({ history}) => ( 

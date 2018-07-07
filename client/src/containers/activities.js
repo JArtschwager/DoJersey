@@ -51,7 +51,7 @@ class Activities extends Component {
                         </div>
                     </div>
                       <div className="row">
-                              <div className="col-6">
+                              <div className="col-12">
                                         <div className="form-group">
                                         <Route render={({ history}) => (     
                                             <button className="btn btn-block buttonColor"

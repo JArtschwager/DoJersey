@@ -5,14 +5,14 @@ font-family: 'Lato', sans-serif; */
 .location {
     display: block;
     color: green;
-    padding-right: 20px;
+    /* padding-right: 20px; */
     
 }
 
-li {
+/* li {
     display: inLine;
 
-}
+} */
 
 li:nth-child(2):after {
     content: "\A";
@@ -22,4 +22,18 @@ li:nth-child(2):after {
 
 .resultTitle {
     font-size: 25px;
+}
+
+.resultsHeader {
+    background-image: url('./amusement.jpg');
+}
+
+.resultsJumbo {
+    margin-bottom: 0px;
+    background-image: url('./boardwalk.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+    height: 400px;
 }
