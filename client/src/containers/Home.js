@@ -49,7 +49,9 @@ class Home extends Component {
                                 </button>)}
                                 />
                                 <Route render={({ history}) => ( 
-                                <button type="submit" className="btn btn-block buttonColor southButton" onClick={() => { history.push('/activities/south') }} >
+                                <button type="submit" className="btn btn-block buttonColor southButton" onClick={() => {
+                                  console.log(this.props)
+                                   history.push('/activities/south') }} >
                                 I'm interested in South Jersey
                                 </button>)}
                                 />

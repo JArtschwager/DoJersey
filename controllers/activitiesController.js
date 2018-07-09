@@ -1,4 +1,6 @@
 const TodoNJ = require("../models/todonj");
+const db = require("../models");
+const User = require("../models/user");
 
 // Defining methods for the Controller
 module.exports = {
@@ -40,5 +42,18 @@ module.exports = {
       .then(todonj => todonj.remove())
       .then(todonj => res.json(todonj))
       .catch(err => res.status(422).json(err));
-  }
+  },
+
+register: function (req, res) {
+  /* To create a new user */
+  User
+    .register(new User({username: req.body.username}), req.body.password, function (err) {
+      if (err) {
+        console.log('error while user register!', err);
+        return res.status(422).json(err);
+      }
+      console.log('user registered!');
+      res.json(true);
+    });
+}
 };

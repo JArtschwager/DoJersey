@@ -16,20 +16,31 @@ class Results extends Component {
   componentDidMount() {
     this.getSavedActivities();
   }
-
-  // getAllActivities = () => {
-  //   API.todoNJSearch()
-  //     .then(res => this.setState({todonjs: res.data}))
-  //     .catch(err => console.log(err))
-
-  // }
   
   getSavedActivities = () => {
     API.activitiesRetrieve()
       .then(res => this.setState({todonjs: res.data}))
       .catch(err => console.log(err))
-  }
+      
 
+  }
+ 
+  saveActivity = id => {
+    const savedActivity = this.state.todonjs.find(todonj => (todonj._id === id));
+
+    console.log(savedActivity);
+    API.activitiesSave({
+      imageURL: savedActivity.imageURL,
+      title: savedActivity.title,
+      url: savedActivity.url,
+      description: savedActivity.description,
+      location: savedActivity.location,
+      phoneNumber: savedActivity.phoneNumber,
+      interestType: savedActivity.interestType,
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  }
 
   render() {
     return (
@@ -42,7 +53,7 @@ class Results extends Component {
           <h1>Your Results below (add selectors - south Jersey Indoor. etc.)</h1>
           <h2>{this.state.todonjs.length
             ? ""
-            : "No Saved activities to Display"}
+            : "No activities to Display"}
           </h2>
           </div>  
                 <table className="table table-hover">
@@ -59,7 +70,9 @@ class Results extends Component {
                         .todonjs
                         .map(todonj => (
                           <tr key={todonj._id}>
-                            <td><img className="resultImage" src={todonj.imageURL} /></td>
+                            <td><img className="resultImage" src={todonj.imageURL} />
+                            <span className="badge badgeColor badgeResults py-3"
+                              onClick={() => this.saveActivity(todonj._id)}>Save Activity</span></td>
                             <td><div><a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a></div>
                             <div className="phoneNumber">{todonj.phoneNumber
                               ? "Phone: "+todonj.phoneNumber
@@ -81,13 +94,3 @@ class Results extends Component {
 export default Results;
 
 
-// <tr>
-// <a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a>
-
-//   <th key={todonj._id} scope="row">1</th>
-//   <td><a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a>
-//   </td>
-//   <td className="location">{todonj.location}</td>
-//   <td className="phoneNumber">{todonj.phoneNumber}</td>
-//   <td className="imageURL">{todonj.imageURL}</td>
-// </tr>

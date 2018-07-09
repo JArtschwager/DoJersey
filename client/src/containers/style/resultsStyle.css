@@ -37,3 +37,26 @@ li:nth-child(2):after {
     text-shadow: black 0.3em 0.3em 0.3em;
     height: 400px;
 }
+
+/* below is for the buttons on Saved and Results page */
+.badgeColor {
+    background: rgb(124, 178, 194);
+    color: white;
+}
+
+.badgeColor:hover {
+    background: rgb(51, 69, 203);
+}
+
+.badgeColor:active {
+    background: rgb(124, 178, 194);
+}
+
+
+/* below is the buttons for the results page only */
+.badgeResults {
+    margin-top: 20px;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}

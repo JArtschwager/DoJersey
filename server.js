@@ -2,19 +2,28 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 3001;
-const app = express();
 const routes = require("./routes");
 const mongoose = require("mongoose");
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+
+const PORT = process.env.PORT || 3001;
+const app = express();
 
 //below brought in from scraping hmwk.
 var fs = require('fs');
 var request = require("request");
-var axios = require("axios");
+// var axios = require("axios");
 var cheerio = require("cheerio");
 // Require all models Crafts and Note.
 var db = require("./models");
 
+// We need to use sessions to keep track of our user's login status
+app.use(session({secret: "keyboard cat", resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,18 +33,19 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// Set up passport to authenticate
+const User = require('./models/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/todoNJDB";
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 // ******************************************************************************************
-
-//******************************************************************************************
-
-
-// ******************* everything between the *'s is stolen content from the scrape hmwk.
-
 
 console.log("\n***********************************\n" +
   "\n***********************************\n");
@@ -58,14 +68,6 @@ app.get("/scrape/outdoor", function (req, res) {
     //holds data
     var results = [];
 
-    // url: String,
-    // description: String,
-    // location: String,
-    // imageURL: String,
-    // phoneNumber: String, //*[@id="centercolumnmobile"]/div/div/table[1]/tbody/tr/td/comment()[5]
-    ////*[@id="centercolumnmobile"]/div/div/table[1]/tbody/tr/td/a[2]/img
-
-
     $(".main_box > table").each(function (i, element) {
       var title = $(element).find('tbody > tr > td > a').text().trim();
       var url = $(element).find('tbody > tr > td > a').attr("href");
@@ -74,7 +76,6 @@ app.get("/scrape/outdoor", function (req, res) {
       var location = $(element).find('tbody > tr > td > div > strong').text().trim();
       var description = $(element).find('tbody > tr > td').text().trim();
 
-      
       db.TodoNJ.update({
         title: title,
         url: (url),
@@ -109,7 +110,6 @@ app.get("/scrape/outdoor", function (req, res) {
   });
 });
 //*===========================================================================================================//
-//
 
 //*SCRAPE TO THE DB FOR INDOOR SITE
 //*===========================================================================================================//
@@ -166,62 +166,7 @@ app.get("/scrape/indoor", function (req, res) {
 });
 //*===========================================================================================================//
 
-//*SCRAPE TO THE DB FOR BEST 50 OVERALL
-//*===========================================================================================================//
-app.get("/scrape/best50", function (req, res) {
-  request("https://www.funnewjersey.com/upload_user/cool_things_to_do/top_50_attractions_in_new_jersey.htm", function (error, response, html) {
-    // Load the HTML into cheerio and save it to a variable
-    var $ = cheerio.load(html);
-    //holds data
-    var results = [];
-
-    // //*[@id="centercolumnmobile"]/div/div/table[1]/tbody/tr/td/div/strong
-    //*[@id="centercolumnmobile"]/div/div/div[3]/font[1]/table/tbody/tr/td/div[1]/font[1]/font/font/a/strong/font
-    //*[@id="centercolumnmobile"]/div/div/div[3]/font[1]/table/tbody/tr/td/div[1]/font[2]/span/strong/font
-  //*[@id="centercolumnmobile"]/div/div/div[3]/table[1]/tbody/tr/td/div[1]/strong/font/span/strong/font
-
-    $(".main_box > table").each(function (i, element) {
-      var title = $(element).find('tbody > tr > td > div > font > font > font > a > strong > font').text().trim();
-      var url = $(element).find('tbody > tr > td > a').attr("href");
-      var phoneNumber = $(element).find('tbody > tr > td > div > strong > font > span > strong > font').text().trim();
-      var imageURL = $(element).find('tbody > tr > td > img').attr("src");
-      var location = $(element).find('tbody > tr > td > div > strong').text().trim();
-      var description = $(element).find('tbody > tr > td').text().trim();
-
-      
-      db.TodoNJ.update({
-        title: title,
-        url: (url),
-        phoneNumber: phoneNumber,
-        imageURL: imageURL,
-        location: location,
-        description: description
-      }, {
-          $setOnInsert: {
-            title: title,
-            url: (url),
-            phoneNumber: phoneNumber,
-            imageURL: imageURL,
-            location: location,
-            description: description
-          }
-        }, { upsert: true },
-        function (err, inserted) {
-          if (err) {
-            // Log the error if one is encountered during the query
-            console.log(err);
-          } else {
-            // Otherwise, log the inserted data
-            console.log(inserted);
-          }
-        }
-      )
-
-    })
-    //this has to be here to end the request.
-    res.send("Scrape Complete");
-  });
-});
+//  /get and /all below.
 //*===========================================================================================================//
 app.get("/get", function (req, res) {
   title = 'title stuff here';

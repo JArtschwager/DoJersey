@@ -14,9 +14,8 @@ class Activities extends Component {
 
   state = {
     activities: [],
-    q: "",
-    begin_date: "",
-    end_date: ""
+  
+   
   }
 
   handleOnChange = event => {

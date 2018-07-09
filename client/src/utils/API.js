@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export default {
-      //the search i believe needs to pull from the database by the flagged area of what they clicked on. find under home.js
       todoNJSearch: function(query) {
         return axios.get("/api/test", {params: query})
       },
@@ -10,22 +9,50 @@ export default {
         return axios.get("/api/activities")
       },
 
-      //save the favorite.  attached this to a button? find under home.js
-      // favoritesSave: function(favoritesInfo) {
-      //   return axios.post("/api/favorites", favoritesInfo)
-      // },
-
-
-      //activities
-      // retrieve all favorites from mongo
+      // retrieve all favorites from mongo. USED
       activitiesRetrieve: function() {
         return axios.get("/api/activities")
       },
 
-      // article delete by id
-      // favoritesDelete: function(id) {
-      //   return axios.delete(`/api/favorites/${id}`)
-      // }
+      // save to /saved page
+      activitiesSave: function(savedInfo) {
+        return axios.post("/api/activities", savedInfo)
+      },
+    
+      // activities delete from /Saved page
+      activitiesDelete: function(id) {
+        return axios.delete(`/api/activities/${id}`)
+      },
+
+      /* 
+    loginCreds = {username: "alex", "password": 12345Password!}
+  */
+  login: function(loginCreds) {
+    return axios.post('/api/users/login', loginCreds)
+  },
+  /*
+    Path to check if user is logged in
+  */
+  loginCheck: function() {
+    return axios.get('/api/users/login')
+  },
+  /* 
+    Path to log out
+  */
+  logout: function() {
+    return axios.get('/api/users/logout')
+  },
+  /* 
+    Path to register new user, you can have more fields than this but "username" and "password" must exist
+
+    userInfo = {
+      username: "alex",
+      password: 12345Password!
+    }
+  */
+  register: function(userInfo) {
+    return axios.post("/api/users/register", userInfo)
+  }
 }
 
 
