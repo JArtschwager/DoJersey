@@ -2,3 +2,14 @@
     text-align: center;
 
 }
+
+.footer {   
+    background-color: rgba(247, 243, 243, 0.845);
+    bottom: -100px;
+    height: 60px;
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid gray;
+
+
+}

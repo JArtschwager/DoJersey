@@ -1,0 +1,28 @@
+.loginupdiv {
+    background-size: 100%;
+    height: 100%;
+    background-image: url('./pinebarrens.jpg');
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+
+.buttonColor2 {
+    background: rgb(124, 178, 194);
+    margin-bottom: 40px;
+}
+
+
+.buttonColor2:hover {
+    background: rgb(78, 146, 167);
+
+}
+
+.buttonColor2:active {
+    background: rgb(124, 178, 194);
+}
+
+.signupstyle {
+    margin-top: 40px;
+    padding-top: 40px;
+}

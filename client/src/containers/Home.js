@@ -31,40 +31,41 @@ class Home extends Component {
   render() {
     return (
       <div className="container">
-      <div className="jumbotron jumbotron-fluid py-5 jumboStyle">
-              <div className="row">
-                      <div className="col-5">
-                      <img src={mapofnj} className="rounded float-left newJerseyMap" />
-                      </div>
-                  <div className="col-6">
-                    <h2> Find what there is to do in New Jersey</h2>
-                      <h4>Follow the prompts for your recommended activities list</h4>
-                            {/*<form> */}
-                                <div className="form-group">       
-                                <Route render={({ history}) => ( 
-                                <button className="btn btn-block buttonColor northButton"
-                                onClick={() => { history.push('/activities/north') }} >
-                               { /*onClick={this.articleSearch}>*/}
-                                  I'm interested in North Jersey
-                                </button>)}
-                                />
-                                <Route render={({ history}) => ( 
-                                <button type="submit" className="btn btn-block buttonColor southButton" onClick={() => {
-                                  console.log(this.props)
-                                   history.push('/activities/south') }} >
-                                I'm interested in South Jersey
-                                </button>)}
-                                />
+        <div className="row my-5">
+                <div className="col-4">
+                <img src={mapofnj} className="img-fluid rounded float-left newJerseyMap" />
+                </div>
+            <div className="col-8">
+              <h1 className="text-center">What to do in New Jersey</h1>
+                      {/*<form> */}
+                          <div className="form-group">       
+                          <Route render={({ history}) => ( 
+                          <button className="btn btn-block buttonColor northButton"
+                          onClick={() => { history.push('/activities/North Jersey') }} >
+                          { /*onClick={this.articleSearch}>*/}
+                            I'm Interested in North Jersey
+                          </button>)}
+                          />
+                          <Route render={({ history}) => ( 
+                            <button type="submit" className="btn btn-block buttonColor centralButton" onClick={() => { history.push('/activities/Central Jersey') }} >
+                            I Believe in Central Jersey  </button>)}
+                            />
+                          <Route render={({ history}) => ( 
+                            <button type="submit" className="btn btn-block buttonColor southButton" onClick={() => {
+                                history.push('/activities/South Jersey') }} >
+                            I'm Interested in South Jersey
+                            </button>)}
+                            />
+                            <Route render={({ history}) => ( 
+                              <button type="submit" className="btn btn-block buttonColor southButton" onClick={() => {
+                                  history.push('/results') }} >
+                              All Jersey, Jersey Strong
+                              </button>)}
+                              />
 
-                                <Route render={({ history}) => ( 
-                                  <button type="submit" className="btn btn-block buttonColor centralButton" onClick={() => { history.push('/activities/central') }} >
-                                  I believe in Central Jersey  </button>)}
-                                  />
-
-                          </div>
-                  </div>
-              </div>    
-          </div>    
+                    </div>
+            </div>
+        </div>    
    </div>
      
 )

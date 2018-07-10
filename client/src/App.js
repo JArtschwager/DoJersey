@@ -18,10 +18,12 @@ const App = () => (
         <Route exact path="/" component={Home}/>
         <Route path="/home" component={Home}/>
         <Route path="/activities/:loc" render={(props) => ( <Activities props={props}/>)}/>
+        <Route path="/results/:loc/:type" render={(props) => ( <Results props={props}/>)}/>
         <Route exact path="/results" component={Results}/>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/saved" component={Saved} />
+
         <Route render={() => (<h1 className="text-center">Page Not Found!</h1>)}/>
       </Switch>
       <Footer/>

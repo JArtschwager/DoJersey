@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import API from "../utils/API";
 import './style.css';
 import {Route} from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
+import Amusement from "./style/amusement.jpg";
 
 
 //1) change state
@@ -18,12 +19,22 @@ class Activities extends Component {
    
   }
 
+
+
+
+
   handleOnChange = event => {
     const { name, value } = event.target;
 
     this.setState({
       [name]: value
     });
+  }
+  constructor(props) {
+      super(props);
+        this.state = {activitiy: {name: ''} };
+
+        
   }
 
   //the line below is stolen code to figure out how to click the final button to get to the next page.
@@ -38,10 +49,13 @@ class Activities extends Component {
 //     this.props.someCallback(value);
 //   }
 
+
+
   render() {
+      
     return (
             <div className="container">
-            <div className="jumbotron jumbotron-fluid py-5 jumboStyle">
+            <div className="jumbotron jumbotron-fluid py-5 jumboStyle activityImage">
             <div className="row">
                         <div className="col-12">
                             <div className="titlepage">
@@ -49,30 +63,34 @@ class Activities extends Component {
                             </div>
                         </div>
                     </div>
-                      <div className="row">
-                              <div className="col-12">
-                                        <div className="form-group">
-                                        <Route render={({ history}) => (     
-                                            <button className="btn btn-block buttonColor"
-                                            onClick={() => { 
-                                                console.log(this.props)
-                                                history.push('/activities/' + this.params.loc + '/active') }} >
-                                            Amusement parks
-                                        </button>)}/> 
-                                        <Route render={({ history}) => (     
-                                              <button type="submit" className="btn btn-block buttonColor" onClick={() => { 
-                                                console.log(this.props)
-                                                history.push('/activities/' + this.params.loc + '/active') }} >
-                                            Classes & Events 
-                                        </button>)}/>
-                                        <Route render={({ history}) => (     
-                                            <button type="submit" className="btn btn-block buttonColor" onClick={() => { 
-                                                console.log(this.props)
-                                                history.push('/activities/' + this.params.loc + '/active') }} >
-                                            Hiking & Nature </button>)}/>
-                                    </div>
-                                </div>
-                      </div>       
+    <div className="row">
+            <div className="col-12">
+                        <div className="form-group">
+
+
+
+                        <Route render={({ history}) => (     
+                            <button type="submit" className="btn btn-block buttonColor" onClick={() => { 
+                                console.log(this.props)
+                                history.push('/results/'+this.props.props.match.params.loc+'/amusement') }} >
+                            Amusement Parks
+                        </button>)}/>
+
+                        <Route render={({ history}) => (     
+                            <button type="submit" className="btn btn-block buttonColor" onClick={() => { 
+                                console.log(this.props)
+                                history.push('/results/'+this.props.props.match.params.loc+'/classes') }} >
+                            Classes & Indoor Activities 
+                        </button>)}/>
+
+                        <Route render={({ history}) => (     
+                            <button type="submit" className="btn btn-block buttonColor" onClick={() => { 
+                                console.log(this.props)
+                                history.push('/results/'+this.props.props.match.params.loc+'/outdoor') }} >
+                            Outdoor Activities </button>)}/>
+                    </div>
+                </div>
+    </div>       
                   </div> 
                   </div>
         

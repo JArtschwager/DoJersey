@@ -6,6 +6,7 @@ import './style/homestyle.css';
 import './style/resultsStyle.css';
 import boardwalk from "./style/boardwalk.jpg";
 
+//the saved page should have the commands similar to the login check?  figure that out.
 
 class Saved extends Component {
 
@@ -23,11 +24,11 @@ class Saved extends Component {
       .catch(err => console.log(err))
   }
 
-//   deletetodonj = id => {
-//     API.activitiesDelete(id)
-//       .then(() => this.getSavedActivities())
-//       .catch(err => console.log(err))
-//   }
+  deletetodonj = id => {
+    API.activitiesDelete(id)
+      .then(() => this.getSavedActivities())
+      .catch(err => console.log(err))
+  }
 
 
 

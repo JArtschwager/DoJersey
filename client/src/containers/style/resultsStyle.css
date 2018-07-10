@@ -24,9 +24,9 @@ li:nth-child(2):after {
     font-size: 25px;
 }
 
-.resultsHeader {
+/* .resultsHeader {
     background-image: url('./amusement.jpg');
-}
+} */
 
 .resultsJumbo {
     margin-bottom: 0px;

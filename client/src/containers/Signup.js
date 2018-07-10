@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
+import "./style/signup.css";
 
 class Login extends Component {
   state = {
@@ -36,43 +37,31 @@ class Login extends Component {
     }
 
     return (
-      <div className="container my-5">
-        <div className="row justify-content-center">
+      <div className="container my-5 signupdiv">
+        <div className="row justify-content-center signupstyle">
           <form>
-            <h3>Sign Up!</h3>
-            <div className="form-group">
-              <label htmlFor="fullName">First and Last Name</label>
-              <input
-                type="text"
-                name="fullName"
-                value={this.state.fullName}
-                onChange={this.handleInputChange}
-                className="form-control"
-                placeholder="Username" />
-              <small id="realname" className="form-text text-muted">Enter your full Name</small>
+            <h3>Sign Up to Save Favorites!</h3>    
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleInputChange}
+              className="form-control"
+              placeholder="Username" />
           </div>
           <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="username"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-            className="form-control"
-            placeholder="email" />
-          <small id="email" className="form-text text-muted">Enter your email</small>
-        </div>
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="email">Email</label>
               <input
                 type="text"
-                name="username"
-                value={this.state.username}
+                name="email"
+                value={this.state.email}
                 onChange={this.handleInputChange}
                 className="form-control"
-                placeholder="Username" />
-              <small id="usernameHelp" className="form-text text-muted">Enter your username</small>
-            </div>
+                placeholder="email" />
+        </div>
+            
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
@@ -86,9 +75,9 @@ class Login extends Component {
             </div>
 
 
-            <button type="submit" className="btn btn-success" onClick={this.register}>Sign Up!</button>
+            <button type="submit" className="btn buttonColor2" onClick={this.register}>Sign Up!</button>
           </form>
-
+      
         </div>
       </div>
     )

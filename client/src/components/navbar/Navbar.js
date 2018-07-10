@@ -9,7 +9,7 @@ const navStyle = {
 // below the saved link doesn't go anywhere yet.
 
 const Navbar = () => (
-  <nav className="navbar fixed-top navbar-expand-lg navbar-light" style={navStyle}>
+  <nav className="navbar navbar-expand-lg navbar-light bg-light" style={navStyle}>
     <div class="container">
         <NavLink className="navbar-brand" to="/">To Do New Jersey</NavLink>
         <div className="collapse navbar-collapse" id="navbarNav">
@@ -18,11 +18,11 @@ const Navbar = () => (
               <NavLink className="nav-link" to="/">Home </NavLink>
             </li>
             <li className="nav-item">
-            <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
-          </li>
-          <li className="nav-item">
-          <NavLink className="nav-link" to="/login">login</NavLink>
-        </li>
+              <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/login">Login</NavLink>
+            </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/saved">Saved</NavLink>
             </li>

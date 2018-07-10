@@ -24,6 +24,9 @@ export default {
         return axios.delete(`/api/activities/${id}`)
       },
 
+      activitiesByLocType: function(loc,type) {
+        return axios.get('/api/activities/?location='+loc+'&interestType='+type)
+      },
       /* 
     loginCreds = {username: "alex", "password": 12345Password!}
   */
@@ -52,7 +55,9 @@ export default {
   */
   register: function(userInfo) {
     return axios.post("/api/users/register", userInfo)
-  }
+  },
+
+
 }
 
 
