@@ -15,9 +15,8 @@ const app = express();
 //below brought in from scraping hmwk.
 var fs = require('fs');
 var request = require("request");
-// var axios = require("axios");
+var axios = require("axios");
 var cheerio = require("cheerio");
-// Require all models Crafts and Note.
 var db = require("./models");
 
 // We need to use sessions to keep track of our user's login status

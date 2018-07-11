@@ -6,13 +6,16 @@ import './style/homestyle.css';
 import './style/resultsStyle.css';
 import boardwalk from "./style/boardwalk.jpg";
 
+
 // state may need to change.
 class Results extends Component {
 
   state = {
     todonjs: [],
     type: null,
-    loc: null
+    loc: null,
+    isLoggedIn: true,
+    username: ""
   }
 
   constructor(props) {
@@ -23,6 +26,7 @@ class Results extends Component {
 
   componentDidMount() {
     // this.getSavedActivities();
+    this.loginCheck();
     console.log(this);
     console.log("this ^ ^ ^");
     if(this.props.props) {
@@ -33,6 +37,7 @@ class Results extends Component {
     
 
   }
+
 
   getSavedActivities = () => {
     API.activitiesRetrieve()
@@ -57,18 +62,27 @@ class Results extends Component {
       .catch(err => console.log(err));
   }
 
-  saveActivity = id => {
-    const savedActivity = this.state.todonjs.find(todonj => (todonj._id === id));
+  loginCheck = () => {
+    API
+      .loginCheck()
+      .then(res => this.setState({
+        isLoggedIn: res.data.isLoggedIn, username: res.data.username
+      }))
+      .catch(err => {
+        console.log(err);
+        this.setState({isLoggedIn: false})
+      })
 
-    console.log(savedActivity);
+  }
+
+  saveActivity = (id, username) => {
+    // const savedActivity = this.state.todonjs.find(todonj => (todonj._id === id));
+
+    console.log({id: id,
+      username: username});
     API.activitiesSave({
-      imageURL: savedActivity.imageURL,
-      title: savedActivity.title,
-      url: savedActivity.url,
-      description: savedActivity.description,
-      location: savedActivity.location,
-      phoneNumber: savedActivity.phoneNumber,
-      interestType: savedActivity.interestType,
+      activity_id: id,
+      username: username,
     })
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -81,14 +95,14 @@ class Results extends Component {
           <div className="jumbotron jumbotron-fluid py-5 jumboStyle resultsJumbo">
           </div>
           <div className="firstRow mx-auto row align-items-center justify-content-center my-5">
-            <h1>Your Results</h1>
+            <h2>Your Results</h2>
           </div>
           <div className="mx-auto row align-items-center justify-content-center">
-            <h2>Filtered By... Location: {this.state.type
+            <h3><strong>Filtered by Location: </strong> {this.state.type
               ? this.state.loc
-              : "all"}... Type: {this.state.type
+              : "all"} <br></br><strong>Type: </strong>{this.state.type
                 ? this.state.type
-                : "all"}</h2>
+                : "all"}</h3>
 
             <h2>{this.state.todonjs.length
               ? ""
@@ -110,7 +124,7 @@ class Results extends Component {
                   <tr key={todonj._id}>
                     <td><img className="resultImage" src={todonj.imageURL} />
                       <span className="badge badgeColor badgeResults py-3"
-                        onClick={() => this.saveActivity(todonj._id)}>Save Activity</span></td>
+                        onClick={() => this.saveActivity(todonj._id, this.state.username)}>Save Activity</span></td>
                     <td><div><a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a></div>
                       <div className="phoneNumber">{todonj.phoneNumber
                         ? "Phone: " + todonj.phoneNumber

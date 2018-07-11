@@ -1,31 +1,50 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import moment from "moment";
 import {Route} from 'react-router-dom';
 import './style/homestyle.css';
 import './style/resultsStyle.css';
 import boardwalk from "./style/boardwalk.jpg";
+import {Redirect} from "react-router-dom";
+import barn from "./style/barn.jpg";
+
 
 //the saved page should have the commands similar to the login check?  figure that out.
 
 class Saved extends Component {
 
   state = {
-    todonjs: []
+    savedList: [],
+    isLoggedIn: true,
+    username: ""
   }
 
   componentDidMount() {
     this.getSavedActivities();
+    this.loginCheck();
+  }
+
+
+  loginCheck = () => {
+    API
+      .loginCheck()
+      .then(res => this.setState({
+        isLoggedIn: res.data.isLoggedIn, username: res.data.username
+      }))
+      .catch(err => {
+        console.log(err);
+        this.setState({isLoggedIn: false})
+      })
+
   }
 
   getSavedActivities = () => {
-    API.activitiesRetrieve()
-      .then(res => this.setState({todonj: res.data}))
+    API.savedRetrieved()
+      .then(res => this.setState({savedList: res.data}))
       .catch(err => console.log(err))
   }
 
-  deletetodonj = id => {
-    API.activitiesDelete(id)
+  deleteSaved = id => {
+    API.savedDelete(id)
       .then(() => this.getSavedActivities())
       .catch(err => console.log(err))
   }
@@ -33,18 +52,21 @@ class Saved extends Component {
 
 
   render() {
+    if (!this.state.isLoggedIn) {
+      return <Redirect to="/login"/>
+    }
     return (
       <div>
         <div className="container">
-        <div className="jumbotron jumbotron-fluid py-5 jumboStyle">
+        <div className="jumbotron jumbotron-fluid py-5 jumboStyle savedJumbo">
         </div>
           <div className="row firstRow mx-auto row align-items-center justify-content-center my-5">
-          <h1>Saved todonj Below</h1>
+          <h1>Saved Activities Below</h1>
           </div>
 
                       {/* todonj result container */}
                       <div className="col-12">
-                        <h2>{this.state.todonjs.length
+                        <h2>{this.state.savedList.length
                           ? ""
                           : "No Saved favorites to Display"}
                         </h2>
@@ -59,21 +81,27 @@ class Saved extends Component {
                         <tbody>
                             {this
                               .state
-                              .todonjs
-                              .map(todonj => (
-                                <tr key={todonj._id}>
-                                  <td><img className="resultImage" src={todonj.imageURL} />
+                              .savedList
+                              .map(saved => (
+                                <tr key={saved._id}>
+                                  <td><img className="resultImage" src={saved.activity_id.imageURL} />
                                   <span
                                   className="badge badgeColor py-2"
-                                  onClick={() => this.deletetodonj(todonj._id)}>Delete todonj</span></td>
-                                  <td><div><a href={todonj.url} className="resultTitle" target="_blank">{todonj.title}</a></div>
-                                  <div className="phoneNumber">{todonj.phoneNumber
-                                    ? "Phone: "+todonj.phoneNumber
+                                  onClick={() => this.deleteSaved(saved._id)}>Delete</span></td>
+                                  <td>
+                                    <div>
+                                          <a href={saved.activity_id.url} className="resultTitle" target="_blank">
+                                          {saved.activity_id.title}
+                                          </a>
+                                    </div>
+                                  <div className="phoneNumber">{saved.activity_id.phoneNumber
+                                    ? "Phone: "+saved.activity_id.phoneNumber
                                     : ""}</div>
-                                  <div className="description">{todonj.description
-                                      ? todonj.description
+                                  <div className="description">{saved.activity_id.description
+                                      ? saved.activity_id.description
                                       : ""}</div></td>
-                                  <td className="location">{todonj.location}</td>
+                                  <td className="location">{saved.activity_id.location}</td>
+                              
                                 </tr>
                               ))}
                         </tbody>

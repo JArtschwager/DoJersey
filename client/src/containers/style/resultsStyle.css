@@ -45,8 +45,9 @@ li:nth-child(2):after {
 }
 
 .badgeColor:hover {
-    background: rgb(51, 69, 203);
-}
+        background: rgb(78, 146, 167);
+    
+    }
 
 .badgeColor:active {
     background: rgb(124, 178, 194);
@@ -60,3 +61,4 @@ li:nth-child(2):after {
     margin-left: 20%;
     margin-right: 20%;
 }
+

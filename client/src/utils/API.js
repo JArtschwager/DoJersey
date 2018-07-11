@@ -16,7 +16,15 @@ export default {
 
       // save to /saved page
       activitiesSave: function(savedInfo) {
-        return axios.post("/api/activities", savedInfo)
+        return axios.post("/api/saved/", savedInfo)
+      },
+
+      savedRetrieved: function(savedContent) {
+        return axios.get("/api/saved", savedContent)
+      },
+
+      savedDelete: function(id) {
+        return axios.delete(`/api/saved/${id}`)
       },
     
       // activities delete from /Saved page

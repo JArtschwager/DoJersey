@@ -44,3 +44,10 @@
     
 }
 
+/* saved page */
+.savedJumbo {
+    background-size: 100%;
+    height: 350px;
+    background-image: url('./barn.jpg');
+    margin-top: 50px;
+}

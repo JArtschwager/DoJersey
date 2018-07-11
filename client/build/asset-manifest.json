@@ -1,8 +1,12 @@
 {
-  "main.css": "static/css/main.4161a902.css",
-  "main.css.map": "static/css/main.4161a902.css.map",
-  "main.js": "static/js/main.0ee21c90.js",
-  "main.js.map": "static/js/main.0ee21c90.js.map",
+  "main.css": "static/css/main.ec04bcc3.css",
+  "main.css.map": "static/css/main.ec04bcc3.css.map",
+  "main.js": "static/js/main.7e25a235.js",
+  "main.js.map": "static/js/main.7e25a235.js.map",
+  "static/media/amusement.jpg": "static/media/amusement.bc12efb5.jpg",
+  "static/media/boardwalk.jpg": "static/media/boardwalk.3676489d.jpg",
   "static/media/mapofNJ.gif": "static/media/mapofNJ.3dfa52f7.gif",
+  "static/media/northJersey.gif": "static/media/northJersey.04ab0457.gif",
+  "static/media/pinebarrens.jpg": "static/media/pinebarrens.c6f51b30.jpg",
   "static/media/southJersey.gif": "static/media/southJersey.cc98feac.gif"
 }
