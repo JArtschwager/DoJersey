@@ -2,6 +2,7 @@ const TodoNJ = require("../models/todonj");
 const db = require("../models");
 const User = require("../models/user");
 
+
 // Defining methods for the Controller
 module.exports = {
   //findAll being used under router in todonjRoutes.js

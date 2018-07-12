@@ -7,8 +7,6 @@ import southJersey from './style/southJersey.gif';
 
 import moment from "moment";
 
-//  1) rename the values of state.
-//    2)get to display on the page
 
 class Home extends Component {
 

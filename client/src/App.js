@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 import Saved from "./containers/saved";
+import Logout from "./containers/logout";
 
 // i'm going to try to remove the Saved from line 16 and put it with middle instead.  otherwise i can move it back and put this elsewhere.
 const App = () => (
@@ -23,6 +24,7 @@ const App = () => (
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/saved" component={Saved} />
+        <Route exact path="/logout" component={Logout}/>
 
         <Route render={() => (<h1 className="text-center">Page Not Found!</h1>)}/>
       </Switch>
