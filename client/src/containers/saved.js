@@ -64,7 +64,6 @@ class Saved extends Component {
           <h1>Saved Activities Below</h1>
           </div>
 
-                      {/* todonj result container */}
                       <div className="col-12">
                         <h2>{this.state.savedList.length
                           ? ""

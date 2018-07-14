@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import {Route} from 'react-router-dom';
 import './style/homestyle.css';
 import mapofnj from './style/mapofNJ.gif';
-import northJersey from './style/northJersey.gif';
-import southJersey from './style/southJersey.gif';
 
 import moment from "moment";
 
@@ -35,12 +33,10 @@ class Home extends Component {
                 </div>
             <div className="col-8">
               <h1 className="text-center">What to do in New Jersey</h1>
-                      {/*<form> */}
                           <div className="form-group">       
                           <Route render={({ history}) => ( 
                           <button className="btn btn-block buttonColor northButton"
                           onClick={() => { history.push('/activities/North Jersey') }} >
-                          { /*onClick={this.articleSearch}>*/}
                             I'm Interested in North Jersey
                           </button>)}
                           />
@@ -66,9 +62,7 @@ class Home extends Component {
         </div>    
    </div>
      
-)
-   
-    
+    ) 
   }
 }
 

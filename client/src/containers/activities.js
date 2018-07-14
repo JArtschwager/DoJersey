@@ -43,8 +43,6 @@ class Activities extends Component {
             <div className="col-12">
                         <div className="form-group">
 
-
-
                         <Route render={({ history}) => (     
                             <button type="submit" className="btn btn-block buttonColor" onClick={() => { 
                                 console.log(this.props)

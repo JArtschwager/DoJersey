@@ -76,7 +76,6 @@ class Results extends Component {
   }
 
   saveActivity = (id, username) => {
-    // const savedActivity = this.state.todonjs.find(todonj => (todonj._id === id));
 
     console.log({id: id,
       username: username});

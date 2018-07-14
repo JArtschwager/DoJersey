@@ -30,7 +30,7 @@ class Login extends Component {
     return (
       <div className="container my-5">
         <div className="row justify-content-center logoutStyle loginupdiv">
-        <h1> You are logged out.</h1>
+        <h1> You are not logged in.</h1>
         </div>
       </div>  
     )

@@ -118,8 +118,6 @@ app.get("/scrape/indoor", function (req, res) {
     var $ = cheerio.load(html);
     //holds data
     var results = [];
-
-    // //*[@id="centercolumnmobile"]/div/div/table[1]/tbody/tr/td/div/strong
   
     $(".main_box > table").each(function (i, element) {
       var title = $(element).find('tbody > tr > td > a').text().trim();
@@ -159,13 +157,10 @@ app.get("/scrape/indoor", function (req, res) {
       )
 
     })
-    //this has to be here to end the request.
     res.send("Scrape Complete");
   });
 });
-//*===========================================================================================================//
 
-//  /get and /all below.
 //*===========================================================================================================//
 app.get("/get", function (req, res) {
   title = 'title stuff here';
@@ -208,13 +203,9 @@ app.get("/all", function (req, res) {
   })
   console.log("successfully grabbed all");
 });
-//above do i need to add a populate for the saved part later?
-// *****************
 
-// Define API routes here
 app.use(routes);
 
-// Send every other request to the React app
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

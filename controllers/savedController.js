@@ -20,7 +20,6 @@ module.exports = {
       .then(saved => res.json(saved))
       .catch(err => res.status(422).json(err));
   },
- //create being used under router in savedRoutes.js
 
   create: function(req, res) {
     Saved

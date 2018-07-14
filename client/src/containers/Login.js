@@ -65,7 +65,6 @@ class Login extends Component {
                 placeholder="Password"
               />
             </div>
-
             <button type="submit" className="btn buttonColor2" onClick={this.login}>Login</button>
           </form>
 
